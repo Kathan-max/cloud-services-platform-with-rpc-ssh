@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Keys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        select,
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        select:focus,
+        input[type="submit"]:hover {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .new-key {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dff0d8;
+            border: 1px solid #d0e9c6;
+            border-radius: 5px;
+            color: #3c763d;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select an API Key</h2>
+    <select name="api_keys">
+        {% for key in api_keys %}
+            <option value="{{ key }}">{{ key }}</option>
+        {% endfor %}
+    </select>
+
+    <form action="/generate_api_key" method="post">
+        <input type="submit" value="Generate API Key">
+    </form>
+
+    {% if new_api_key %}
+        <div class="new-key">New API Key: {{ new_api_key }}</div>
+    {% endif %}
+</body>
+</html>
